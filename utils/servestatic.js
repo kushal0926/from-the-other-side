@@ -1,6 +1,6 @@
 import { readFile } from "node:fs/promises";
 import path from "node:path";
-import { sendResponse } from "./send-response.js";
+import { sendResponse } from "./response.js";
 import { getContentType } from "./get-content-type.js";
 
 export async function serveStatic(req, res, baseDir) {

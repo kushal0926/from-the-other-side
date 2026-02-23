@@ -1,7 +1,7 @@
 import { createServer } from "node:http";
 import "dotenv/config";
-import { serveStatic } from "./utils/serve-static.js";
-import { handleGet } from "./handlers/route-handlers.js";
+import { serveStatic } from "./utils/servestatic.js";
+import { handleGet, handlePost } from "./handlers/route-handlers.js";
 
 const PORT = process.env.PORT || 8080;
 
@@ -11,6 +11,8 @@ const server = createServer(async (req, res) => {
   if (req.url === "/api") {
     if (req.method === "GET") {
       return await handleGet(res);
+    } else if (req.method === "POST") {
+      handlePost(req, res);
     }
   } else if (!req.url.startsWith("/api")) {
     await serveStatic(req, res, __dirname);
